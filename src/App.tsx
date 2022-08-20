@@ -1,29 +1,39 @@
 import { Tags } from './ProjectTags';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import './App.css';
 
+const darkTheme = createTheme({
+	palette: {
+		mode: 'dark',
+	},
+});
+
 function App() {
   return (
-    <div className="App">
-			<Contact />
-			<About />
-			<Projects />
-    </div>
+		<ThemeProvider theme={darkTheme}>
+			<CssBaseline />
+			<div className="App">
+				<Contact />
+				<About />
+				<Projects />
+			</div>
+		</ThemeProvider>
   );
 }
 
-// TODO: Host resume on AWS
 const Contact = () => {
 	return (
 		<div className="contact">
 			<a href="http://www.google.com" target="_blank" rel="noreferrer">
-				<Button variant="outlined">Resume</Button>
+				<Button variant="outlined" size="small">Resume</Button>
 			</a>
 
 			<a href="https://github.com/mojuwara" target="_blank" rel="noreferrer">
-				<img src="/github-icon.png" alt="Github Icon" width={30} />
+				<img src="/github-icon.png" alt="Github Icon" width={27} />
 			</a>
 
 			<a href='https://www.linkedin.com/in/mahamadou-juwara/' target="_blank" rel="noreferrer">
@@ -40,10 +50,7 @@ const About = () => {
 				<h1>Mahamadou Juwara</h1>
 				<h4>Software Engineer II, Bank of America</h4>
 			</div>
-			{/* <div>
-				<h3>I am a software engineer at Bank of America with passion for distributed systems, backend development and programming in general.</h3>
-				<h3>Please have a look at some of my personal projects.</h3>
-			</div> */}
+			<h3>I am a software engineer with passion for cloud computing and backend development</h3>
 		</div>
 	)
 }
@@ -54,6 +61,7 @@ const Projects = () => {
 			href: "https://raft.mojuwara.com",
 			title: "Raft Consensus Algorithm Demo",
 			tags: ["AWS", "AWS Lambda", "Docker", "GO", "https", "Linux", "React", "RPC", "Multithreading", "Signals", "TypeScript", "WebSocket"],
+			display: <video autoPlay loop playsInline muted src="" />
 		}
 	]
 	return (
@@ -70,9 +78,9 @@ type ProjectProps = {
 	href: string;
 	title: string;
 	tags: string[];
-	// display: string;
+	display: JSX.Element;
 }
-const Project = ({href, title, tags}: ProjectProps) => {
+const Project = ({href, title, tags, display}: ProjectProps) => {
 	const tagStyle = {
 		margin: 0.2,
 		padding: 0.6,
@@ -86,7 +94,7 @@ const Project = ({href, title, tags}: ProjectProps) => {
 			<a href={href} target="_blank" rel="noreferrer">
 				<h3>{title}</h3>
 			</a>
-			<img src="/placeholder-image.png" alt={title} width="70%" />
+			{display}
 			<div className="tag-container">
 				{tags.map((t, ndx) => <Paper key={ndx} elevation={1} sx={{ ...tagStyle, backgroundColor: Tags[t] }}>{t}</Paper>)}
 			</div>

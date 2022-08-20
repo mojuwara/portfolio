@@ -6,6 +6,7 @@ interface TagObject {
 export const Tags:TagObject = {
 	"AWS"							: "#ec7211",
 	"AWS Lambda"			: "#ec7211",
+	"CI/CD"						: "",
 	"Docker"					: "#0073ec",
 	"GO"							: "#007d9c",
 	"https"						: "#1fa22c",
