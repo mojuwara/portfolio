@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Tags } from './ProjectTags';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+
+import { Storage } from 'aws-amplify';
 
 import './App.css';
 
@@ -56,12 +59,18 @@ const About = () => {
 }
 
 const Projects = () => {
+	const [raftDemoURL, setRaftDemoURL] = useState<string>("");
+
+	useEffect(() => {
+		Storage.get("raft-demo").then(url => setRaftDemoURL(url));
+	}, []);
+
 	const projectList = [
 		{
 			href: "https://raft.mojuwara.com",
 			title: "Raft Consensus Algorithm Demo",
-			tags: ["AWS", "AWS Lambda", "Docker", "GO", "https", "Linux", "React", "RPC", "Multithreading", "Signals", "TypeScript", "WebSocket"],
-			display: <video autoPlay loop playsInline muted src="" />
+			tags: ["AWS", "AWS Lambda", "Docker", "GO", "https", "Linux", "Multithreading", "React", "RPC", "Signals", "TypeScript", "WebSocket"],
+			display: <video playsInline muted src={raftDemoURL} />
 		}
 	]
 	return (
