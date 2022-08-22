@@ -62,8 +62,10 @@ const Projects = () => {
 	const [raftDemoURL, setRaftDemoURL] = useState<string>("");
 
 	useEffect(() => {
-		Storage.get("raft-demo").then(url => setRaftDemoURL(url));
+		// Storage.get("raft-demo.mp4").then(url => setRaftDemoURL(url));
+		Storage.get('raft-demo.mp4', {level: 'private'}).then(data => setRaftDemoURL(data));
 	}, []);
+	console.log(raftDemoURL)
 
 	const projectList = [
 		{

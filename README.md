@@ -1,4 +1,5 @@
 ### TODO:
+- Budget for AWS
 - Connect to S3 for videos and resume
 - Update domain name
 - Add monitoring
