@@ -70,7 +70,7 @@ const Projects = () => {
 			href: "https://raft.mojuwara.com",
 			title: "Raft Consensus Algorithm Demo",
 			tags: ["AWS", "AWS Lambda", "Docker", "GO", "https", "Linux", "Multithreading", "React", "RPC", "Signals", "TypeScript", "WebSocket"],
-			display: <video playsInline controls muted src={raftDemoURL} />
+			display: (raftDemoURL !== "") ? <video playsInline controls muted src={raftDemoURL} width="100%" height="500px" /> : <div></div>
 		}
 	]
 	return (

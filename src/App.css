@@ -34,6 +34,11 @@
 	margin-bottom: 20px;
 }
 
+.projects {
+	min-width: 1000px;
+	width: 70%;
+}
+
 .project > h3 {
 	display: block;
 }
