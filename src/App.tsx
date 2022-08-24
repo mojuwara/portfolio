@@ -62,8 +62,7 @@ const Projects = () => {
 	const [raftDemoURL, setRaftDemoURL] = useState<string>("");
 
 	useEffect(() => {
-		// Storage.get("raft-demo.mp4").then(url => setRaftDemoURL(url));
-		Storage.get('raft-demo.mp4', {level: 'private'}).then(data => setRaftDemoURL(data));
+		Storage.get("raft-demo.mp4").then(url => setRaftDemoURL(url));
 	}, []);
 
 	const projectList = [
@@ -71,7 +70,7 @@ const Projects = () => {
 			href: "https://raft.mojuwara.com",
 			title: "Raft Consensus Algorithm Demo",
 			tags: ["AWS", "AWS Lambda", "Docker", "GO", "https", "Linux", "Multithreading", "React", "RPC", "Signals", "TypeScript", "WebSocket"],
-			display: <video playsInline muted src={raftDemoURL} />
+			display: <video playsInline controls muted src={raftDemoURL} />
 		}
 	]
 	return (
